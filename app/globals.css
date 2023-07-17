@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+	.sidebar {
+		transition: all 0.4s ease-in-out;
+	}
+}
+.sidebar {
+	border-top-right-radius: 2rem;
+	border-bottom-right-radius: 2rem;
+}
