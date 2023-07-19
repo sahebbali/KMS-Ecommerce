@@ -9,7 +9,7 @@ export const GET = async (request, { params }) => {
 		await connect();
 		// Find user items based on the id parameter
 		const user = await User.findOne({ email });
-		console.log(user);
+		console.log("My us:", user);
 		if (user) {
 			return NextResponse.json(user);
 		} else {

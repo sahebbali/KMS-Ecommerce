@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useSession } from 'next-auth/react';
 import { message } from 'antd';
 export default function Details({ data }) {
-	const { _id, title, price, image, color, size, quantity } =
+	const { _id, title, price, image, color, size, desc, quantity } =
 		data.product || {};
 	const [quantityProduct, setQuantityProduct] = useState(0);
 	const [selectedSizes, setSelectedSizes] = useState(null);
@@ -265,8 +265,9 @@ export default function Details({ data }) {
 						</span>
 
 						<div className='flex flex-wrap gap-3'>
-							{color?.map((c) => (
+							{color?.map((c,index) => (
 								<button
+									key={index}
 									onClick={() => setSelectedColor(c)}
 									className={`w-8 h-8 transition duration-100 border rounded-full ${
 										selectedColor === c
@@ -288,8 +289,9 @@ export default function Details({ data }) {
 						</span>
 
 						<div className='flex flex-wrap gap-3'>
-							{size?.map((s) => (
+							{size?.map((s, index) => (
 								<button
+									key={index}
 									onClick={() => setSelectedSizes(s)}
 									type='button'
 									className={`flex items-center justify-center w-12 h-8 text-sm font-semibold text-center text-gray-800 uppercase transition duration-100 border rounded-md ${
@@ -312,10 +314,10 @@ export default function Details({ data }) {
 
 						<div className='flex flex-wrap gap-3'>
 							<div className='flex flex-wrap gap-3'>
-								{versions?.map((s) => (
+								{versions?.map((s, index) => (
 									<button
+										key={index}
 										onClick={() => handleVersionClick(s)}
-										key={s}
 										type='button'
 										className={`flex items-center justify-center w-20 h-8 text-sm font-semibold text-center text-gray-800 uppercase transition duration-100 border rounded-md ${
 											selectedVersions.includes(s)
@@ -394,11 +396,7 @@ export default function Details({ data }) {
 						</div>
 
 						<p className='text-gray-500'>
-							This is a section of some simple filler text, also
-							known as placeholder text. It shares some
-							characteristics of a real written text but is random
-							or otherwise generated. It may be used to display a
-							sample of fonts or generate text for testing.
+							<p>{desc}</p>
 							<br />
 							<br />
 							This is a section of some simple filler text, also

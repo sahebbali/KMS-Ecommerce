@@ -53,7 +53,7 @@ const CategoryProduct = () => {
 	};
 
 	return (
-		<section className=''>
+		<section className=' '>
 			<div className=''>
 				<Slider {...settings}>
 					{products.map((product) => (

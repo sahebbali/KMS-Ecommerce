@@ -18,7 +18,7 @@ export async function GET(request) {
     const skip = (page - 1) * perPage;
 
     // Fetch products with pagination
-    const products = await Products.find({}).skip(skip).limit(perPage);
+    const products = await Products.find({status: "pending"}).skip(skip).limit(perPage);
 
     // Get total number of products
     const totalProducts = await Products.countDocuments({});
@@ -54,3 +54,4 @@ export async function POST(request) {
     return new NextResponse("Database Error", { status: 500 });
   }
 }
+

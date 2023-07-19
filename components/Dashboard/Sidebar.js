@@ -8,14 +8,25 @@ import Image from 'next/image';
 const Sidebar = () => {
 	const { data: session } = useSession();
 	const email = session?.user?.tokenUser;
+	
 	const [userRole, setUserRole] = useState({});
-	console.log(email);
 	useEffect(() => {
-		fetch(`${process.env.NEXT_PUBLIC_HOST}/api/user/${email}`)
-			.then((res) => res.json())
-			.then((data) => {
+		if (email) {
+			fetch(`${process.env.NEXT_PUBLIC_HOST}/api/user/${email}`)
+			  .then((res) => {
+				if (!res.ok) {
+				  throw new Error("User data not found");
+				}
+				return res.json();
+			  })
+			  .then((data) => {
 				setUserRole(data.role);
-			});
+			  })
+			  .catch((error) => {
+				console.error(error);
+				// Handle error gracefully, e.g., display an error message to the user
+			  });
+		  }
 	}, [email, userRole]);
 
 	console.log(userRole);
@@ -53,7 +64,7 @@ const Sidebar = () => {
 					<div>
 						<div className='w-max p-2.5'>
 							{/* <img src={Logo} alt="" /> */}
-							<Image src={Logo} width={60} height={60} />
+							<Image src={Logo} width={60} height={60} alt='sidbarLogo' />
 						</div>
 						<ul className='mt-6 space-y-3 tracking-wide'>
 							{userRole === 'admin' ? (

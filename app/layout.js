@@ -33,6 +33,9 @@ export default function Layout({ children }) {
 		'/dashboard/change-password',
 		'/dashboard/wishlist',
 		'/dashboard/uploadproducts',
+		'/dashboard/seller',
+		'/admin-dashboard',
+		'/dashboard/manageproducts',
 		'/sales',
 	];
 

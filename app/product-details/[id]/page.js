@@ -16,7 +16,7 @@ async function fetchData(url) {
 async function getData(params) {
 	const firstUrl = `${process.env.NEXT_PUBLIC_HOST}/api/products/${params}`;
 	const secondUrl = `${process.env.NEXT_PUBLIC_HOST}/api/styledetails/${params}`;
-
+	console.log(firstUrl);
 	try {
 		const firstData = await fetchData(firstUrl);
 		if (firstData.product === null) {
